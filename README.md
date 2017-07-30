@@ -5,6 +5,20 @@ developing docker images within GitLab.
 Once the image has been developed, the master branch is mirrored on Github 
 and that latest tagged image is deployed to DockerHub.
 
+## Pipeline
+
+> Development and Continuous Integration on GitLab
+
+![gitlab_logo](resources/gitlab.png)
+
+> Publish to GitHub
+
+![github_logo](resources/github.png)
+
+> Release to DockerHub
+
+![dockerhub_logo](resources/dockerhub.png)
+
 ## Build & Release Status
 
 ### Build
@@ -12,6 +26,13 @@ and that latest tagged image is deployed to DockerHub.
 [![Build Status](https://gitlab.com/TheYorkshireDev/docker-bootstrap/badges/master/build.svg)](https://gitlab.com/TheYorkshireDev/docker-bootstrap/pipelines)
 [![GitHub tag](https://img.shields.io/github/tag/theyorkshiredev/docker-bootstrap.svg)](https://github.com/theyorkshiredev/docker-bootstrap/releases)
 [![license](https://img.shields.io/github/license/theyorkshiredev/docker-bootstrap.svg)](https://github.com/theyorkshiredev/docker-bootstrap/blob/master/LICENCE)
+
+### Release
+
+[![Docker Build Status](https://img.shields.io/docker/build/theyorkshiredev/docker-bootstrap.svg)](https://hub.docker.com/r/theyorkshiredev/docker-bootstrap/)
+[![Docker Automated build](https://img.shields.io/docker/automated/theyorkshiredev/docker-bootstrap.svg)](https://hub.docker.com/r/theyorkshiredev/docker-bootstrap/)
+[![Docker Pulls](https://img.shields.io/docker/pulls/theyorkshiredev/docker-bootstrap.svg)](https://hub.docker.com/r/theyorkshiredev/docker-bootstrap/)
+[![Docker Stars](https://img.shields.io/docker/stars/theyorkshiredev/docker-bootstrap.svg)](https://hub.docker.com/r/theyorkshiredev/docker-bootstrap/)
 
 ## GitLab Development Environment
 
@@ -55,3 +76,7 @@ Within the repository settings:
 * Uncheck automatic build on push
 * Activate triggers
 * Store the trigger token in an environment variable `$DOCKERHUB_TOKEN`
+
+## Contribute
+
+* [Report Issues on Gitlab](https://gitlab.com/TheYorkshireDev/docker-bootstrap/issues)
