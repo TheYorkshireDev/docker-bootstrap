@@ -9,15 +9,15 @@ and that latest tagged image is deployed to DockerHub.
 
 > Development and Continuous Integration on GitLab
 
-![gitlab_logo](resources/gitlab.png)
+![gitlab_logo](https://raw.githubusercontent.com/TheYorkshireDev/docker-bootstrap/master/resources/gitlab.png)
 
 > Publish to GitHub
 
-![github_logo](resources/github.png)
+![github_logo](https://raw.githubusercontent.com/TheYorkshireDev/docker-bootstrap/master/resources/github.png)
 
 > Release to DockerHub
 
-![dockerhub_logo](resources/dockerhub.png)
+![dockerhub_logo](https://raw.githubusercontent.com/TheYorkshireDev/docker-bootstrap/master/resources/dockerhub.png)
 
 ## Build & Release Status
 
