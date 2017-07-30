@@ -10,12 +10,14 @@ stages:
   - build
   - test
   - publish
+  - release
 
 # Log in to Gitlab's docker registry
 before_script:
   - export COMMIT_IMAGE=$( echo $CI_REGISTRY/$CI_PROJECT_PATH:$CI_COMMIT_SHA | tr '[:upper:]' '[:lower:]' )
   - export TAGGED_IMAGE=$( echo $CI_REGISTRY/$CI_PROJECT_PATH:$CI_COMMIT_TAG | tr '[:upper:]' '[:lower:]' )
   - export GITHUB_URL=https://TheYorkshireDev:${GITHUB_TOKEN}@github.com/TheYorkshireDev/docker-bootstrap.git
+  - export RELEASE_URL=https://registry.hub.docker.com/u/theyorkshiredev/docker-bootstrap/trigger/$DOCKERHUB_TOKEN/
   - docker info
   - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
 
@@ -33,7 +35,7 @@ test:
     - docker pull $COMMIT_IMAGE
     - docker run -i $COMMIT_IMAGE /bin/sh -c 'docker --version'
 
-# If the build has a tag, then use it it release a docker image
+# If the build has a tag, then use it to tag the docker image
 publish:
   stage: publish
   script:
@@ -48,8 +50,22 @@ github_publish:
   image: stevencooney/docker-git:latest
   stage: publish
   script:
-    - echo "Release to Github."
+    - echo "Publish to Github."
     - git remote add github "$GITHUB_URL"
     - git push github master --follow-tags
   only:
     - tags
+
+# If the publish to github completed release the image on dockerhub
+dockerhub_release:
+  image: stevencooney/droplet-configuration
+  stage: release
+  script:
+    - echo "Release to Dockerhub."
+    - echo \{\"source_type\":\"Tag\",\"source_name\":\"\$CI_COMMIT_TAG\"\} > tag-template.json
+    - envsubst < tag-template.json > tag-body.json
+    - 'curl -X POST -H "Content-Type: application/json" -d "@./tag-body.json" "$RELEASE_URL"'
+  only:
+    - tags
+  dependencies:
+    - github_publish

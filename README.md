@@ -5,6 +5,14 @@ developing docker images within GitLab.
 Once the image has been developed, the master branch is mirrored on Github 
 and that latest tagged image is deployed to DockerHub.
 
+## Build & Release Status
+
+### Build
+
+[![Build Status](https://gitlab.com/TheYorkshireDev/docker-bootstrap/badges/master/build.svg)](https://gitlab.com/TheYorkshireDev/docker-bootstrap/pipelines)
+[![GitHub tag](https://img.shields.io/github/tag/theyorkshiredev/docker-bootstrap.svg)](https://github.com/theyorkshiredev/docker-bootstrap/releases)
+[![license](https://img.shields.io/github/license/theyorkshiredev/docker-bootstrap.svg)](https://github.com/theyorkshiredev/docker-bootstrap/blob/master/LICENCE)
+
 ## GitLab Development Environment
 
 ### GitLab General Settings
@@ -37,3 +45,13 @@ Within the repository settings:
 * Uncheck the `Restrict editing to collaborators only` feature
 * Uncheck the `Issues` feature
 * Uncheck the `Projects` feature
+
+## DockerHub Release
+
+* Create an automated-build within docker hub
+* Link the DockerHub repository and the github repository
+* Add build step: `TAG`, `/^[0-9.]+$/`, `/`, `latest`
+* Add build step: `TAG`, `/^[0-9.]+$/`, `/`
+* Uncheck automatic build on push
+* Activate triggers
+* Store the trigger token in an environment variable `$DOCKERHUB_TOKEN`
