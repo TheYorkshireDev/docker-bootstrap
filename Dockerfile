@@ -4,4 +4,4 @@
 # (c) 2017 - Steven Cooney
 ########################################################
 
-FROM docker:latest
+FROM docker:17.06.0-ce
